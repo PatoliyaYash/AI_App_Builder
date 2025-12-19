@@ -2,6 +2,7 @@ package com.yash.projects.lovable_clone.controller;
 
 import com.yash.projects.lovable_clone.dto.member.InviteMemberRequest;
 import com.yash.projects.lovable_clone.dto.member.MemberResponse;
+import com.yash.projects.lovable_clone.dto.member.UpdateMemberRoleRequest;
 import com.yash.projects.lovable_clone.entity.ProjectMember;
 import com.yash.projects.lovable_clone.service.ProjectMemberService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class ProjectMemberController {
     private final ProjectMemberService projectMemberService;
 
     @GetMapping
-    public ResponseEntity<List<ProjectMember>> getProjectMembers(@PathVariable Long projectId) {
+    public ResponseEntity<List<MemberResponse>> getProjectMembers(@PathVariable Long projectId) {
         Long userId = 1L;
         return ResponseEntity.ok(projectMemberService.getProjectMembers(projectId, userId));
     }
@@ -38,7 +39,7 @@ public class ProjectMemberController {
     public ResponseEntity<MemberResponse> updateMemberRole(
             @PathVariable Long projectId,
             @PathVariable Long memberId,
-            @RequestBody InviteMemberRequest request) {
+            @RequestBody UpdateMemberRoleRequest request) {
         Long userId = 1L;
         return ResponseEntity.ok(
                 projectMemberService.updateMemberRole(projectId, memberId, request, userId)
@@ -46,12 +47,11 @@ public class ProjectMemberController {
     }
 
     @DeleteMapping("/{memberId}")
-    public ResponseEntity<MemberResponse> updateMemberRole(
+    public ResponseEntity<Void> removeMember(
             @PathVariable Long projectId,
             @PathVariable Long memberId) {
         Long userId = 1L;
-        return ResponseEntity.ok(
-                projectMemberService.deleteProjectMember(projectId, memberId, userId)
-        );
+        projectMemberService.removeProjectMember(projectId, memberId, userId);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,5 +1,6 @@
 package com.yash.projects.lovable_clone.controller;
 
+import com.yash.projects.lovable_clone.dto.subscription.PlanLimitsResponse;
 import com.yash.projects.lovable_clone.dto.subscription.UsageTodayResponse;
 import com.yash.projects.lovable_clone.service.UsageService;
 import lombok.RequiredArgsConstructor;
