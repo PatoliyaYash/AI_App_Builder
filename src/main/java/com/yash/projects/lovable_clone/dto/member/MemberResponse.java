@@ -7,8 +7,8 @@ import java.time.Instant;
 public record MemberResponse(
         Long userId,
         String name,
-        String email,
-        ProjectRole projectRole,
+        String username,
+        ProjectRole role,
         Instant invitedAt
 ) {
 }

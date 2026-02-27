@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+
+# Ignore local Spring Boot config
+/src/main/resources/application.yaml
+/application.yaml
+src/main/resources/application-*.yaml
